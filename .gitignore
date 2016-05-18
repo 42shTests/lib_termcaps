@@ -1,0 +1,16 @@
+# project specific
+*.log
+libcaps.a
+test
+
+# C program
+*.out
+*.a
+*.o
+
+# editors
+.*.swp
+
+# others
+._.DS_Store
+.DS_Store
