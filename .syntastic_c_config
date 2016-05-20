@@ -1,0 +1,7 @@
+./incs
+./srcs
+./libs/libft
+./libs/ft_printf
+./libs/ft_printf/srcs
+./libs/ft_printf/includes
+./libs/ft_printf/libs/libft

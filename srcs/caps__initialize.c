@@ -21,7 +21,7 @@
 static bool	internal_caps__initialize_caps(t_internal_context *caps)
 {
 	char	*capcodes[] = {
-		"nd", "le", "up", "do", "dc", "cd", "cr", "rc", "bc"
+		"nd", "le", "up", "do", "dc", "cd", "cr", "bc"
 	};
 	size_t	i;
 
@@ -30,13 +30,16 @@ static bool	internal_caps__initialize_caps(t_internal_context *caps)
 	while (i < caps->caps_size)
 	{
 		caps->caps[i] = tgetstr(capcodes[i], &caps->buffaddr);
-		if (i != caps->caps_size - 1 && !caps->caps[i])
+		if (!ft_memcmp(capcodes[i], "bc", sizeof("bc") - 1))
+		{
+			if (!caps->caps[i])
+			{
+				caps->caps[i] = "\b";
+			}
+		}
+		else if (!caps->caps[i])
 		{
 			LOG_ERROR("tgetstr() failed on %s", capcodes[i]);
-		}
-		else if (i == caps->caps_size - 1)
-		{
-			caps->caps[i] = "\b";
 		}
 		i++;
 	}

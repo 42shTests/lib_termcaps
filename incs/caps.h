@@ -36,7 +36,6 @@ typedef enum		e_caps_cap
 	CAPS__DELETE,
 	CAPS__CLEAR_TO_END_OF_SCREEN,
 	CAPS__CARRIAGE_RETURN,
-	CAPS__ENDLINE,
 	CAPS__BACKSPACE
 }					t_caps_cap;
 
