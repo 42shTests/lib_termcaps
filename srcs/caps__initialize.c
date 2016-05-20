@@ -21,7 +21,7 @@
 static bool	internal_caps__initialize_caps(t_internal_context *caps)
 {
 	char	*capcodes[] = {
-		"nd", "le", "up", "do", "dc", "cd", "cr", "rc", "bc"
+		"nd", "le", "up", "do", "dc", "ce", "cd", "cr", "bc"
 	};
 	size_t	i;
 
@@ -69,6 +69,7 @@ static bool	internal_caps__initialize_keycodes(t_internal_context *caps)
 	return (TRUE);
 }
 
+#include <termios.h>
 static bool	internal_caps__tgetent(t_internal_context *caps)
 {
 	char		*termtype;
@@ -86,7 +87,6 @@ static bool	internal_caps__tgetent(t_internal_context *caps)
 	PC = temp ? *temp : 0;
 	BC = tgetstr("le", &caps->buffaddr);
 	UP = tgetstr("up", &caps->buffaddr);
-	ospeed = 19200;
 	return (TRUE);
 }
 

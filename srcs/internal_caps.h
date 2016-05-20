@@ -25,7 +25,7 @@ typedef struct	s_key_map
 	char		*tcapcode;
 	t_buffer	keycode;
 	char		*description;
-	bool		(*func)();
+	int			(*func)();
 }				t_key_map;
 
 typedef struct	s_internal_context

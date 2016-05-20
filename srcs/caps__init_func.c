@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			  */
-/*														  :::	   ::::::::	  */
-/*	 caps__init_func.c									:+:		 :+:	:+:	  */
-/*													  +:+ +:+		  +:+	  */
-/*	 By: abombard <marvin@42.fr>					+#+	 +:+	   +#+		  */
-/*												  +#+#+#+#+#+	+#+			  */
-/*	 Created: 2016/04/01 17:18:22 by abombard		   #+#	  #+#			  */
-/*	 Updated: 2016/04/01 17:19:29 by abombard		  ###	########.fr		  */
-/*																			  */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   caps__init_func.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abombard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/09 15:49:10 by abombard          #+#    #+#             */
+/*   Updated: 2016/05/26 13:02:22 by abombard         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "internal_caps.h"
@@ -16,7 +16,7 @@
 
 #include "libft.h"
 
-bool	caps__init_func(const char *in_tcapcode, bool (*in_func)())
+bool	caps__init_func(const char *in_tcapcode, int (*in_func)())
 {
 	t_internal_context	*context;
 	unsigned int		i;

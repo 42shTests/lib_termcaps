@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			  */
-/*														  :::	   ::::::::	  */
-/*	 caps__keycode_dump.c								:+:		 :+:	:+:	  */
-/*													  +:+ +:+		  +:+	  */
-/*	 By: abombard <marvin@42.fr>					+#+	 +:+	   +#+		  */
-/*												  +#+#+#+#+#+	+#+			  */
-/*	 Created: 2016/04/01 17:34:53 by abombard		   #+#	  #+#			  */
-/*	 Updated: 2016/04/01 18:10:19 by abombard		  ###	########.fr		  */
-/*																			  */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   caps__keycode_dump.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abombard <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/09 15:50:46 by abombard          #+#    #+#             */
+/*   Updated: 2016/05/09 15:54:55 by abombard         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "log.h"
@@ -15,9 +15,9 @@
 #include "libft.h"
 
 static bool	internal__keycode_dump(const size_t keycode_size,
-								   const char *keycode,
-								   const size_t dump_size,
-								   char *dump)
+									const char *keycode,
+									const size_t dump_size,
+									char *dump)
 {
 	char			*hex;
 	unsigned char	c;
@@ -55,7 +55,10 @@ char		*caps__keycode_dump(const size_t keycode_size, const char *keycode)
 	}
 	dump_index = dump_index == (sizeof(dump) / sizeof(dump[0]) - 1) ?
 		0 : dump_index + 1;
-	if (!internal__keycode_dump(keycode_size, keycode, sizeof(dump[0]), dump[dump_index]))
+	if (!internal__keycode_dump(keycode_size,
+								keycode,
+								sizeof(dump[0]),
+								dump[dump_index]))
 	{
 		LOG_ERROR("internal_caps__keycode_dump() failed keycode %s\r", keycode);
 		return (NULL);

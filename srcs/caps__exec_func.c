@@ -2,7 +2,9 @@
 #include "log.h"
 #include "internal_caps.h"
 
-bool	caps__exec_func(const size_t in_keycode_size, const char *in_keycode, void *in_context)
+bool	caps__exec_func(const size_t in_keycode_size,
+						const char *in_keycode,
+						void *in_context)
 {
 	t_internal_context	*context;
 	t_buffer			keycode;
@@ -17,14 +19,10 @@ bool	caps__exec_func(const size_t in_keycode_size, const char *in_keycode, void 
 		if (!caps__keycode_cmp(keycode, context->map[i].keycode))
 		{
 			if (context->map[i].func)
-			{
-				if (!context->map[i].func(in_context))
-					return (FALSE);
-			}
-			return (TRUE);
+				return (context->map[i].func(in_context));
+			return (TRUE); //TEMP
 		}
 		i++;
 	}
-	//LOG_DEBUG("Could not find the code %s\r", caps__keycode_dump(in_keycode_size, in_keycode));
 	return (FALSE);
 }
