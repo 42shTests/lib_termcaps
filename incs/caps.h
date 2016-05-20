@@ -16,8 +16,8 @@
 # include "types.h"
 # include <unistd.h>
 
-//# define CAPS__TERMTYPE getenv("TERM")
-# define CAPS__TERMTYPE "ansi"
+# define CAPS__TERMTYPE getenv("TERM")
+//# define CAPS__TERMTYPE "ansi"
 
 /*
 ** caps print
