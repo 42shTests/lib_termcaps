@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "log.h"
+
 #include "libft.h"
+#include "types.h"
 
 int			caps__keycode_cmp(const t_buffer keycode1, const t_buffer keycode2)
 {

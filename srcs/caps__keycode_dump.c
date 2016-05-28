@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "log.h"
-#include "types.h"
+
+#include "caps.h"
 #include "libft.h"
+#include "types.h"
 
 static bool	internal__keycode_dump(const size_t keycode_size,
 									const char *keycode,
@@ -30,7 +31,10 @@ static bool	internal__keycode_dump(const size_t keycode_size,
 	while (i < keycode_size)
 	{
 		if (j + 3 > dump_size)
-			FATAL("buffer overflow %s\r", "");
+		{
+			log_fatal("buffer overflow %s\r", "");
+			return 0;
+		}
 		if (i != 0)
 			dump[j++] = ':';
 		c = keycode[i];
@@ -50,7 +54,7 @@ char		*caps__keycode_dump(const size_t keycode_size, const char *keycode)
 
 	if (!keycode)
 	{
-		LOG_ERROR("keycode %p", (void *)keycode);
+		log_error("keycode %p", (void *)keycode);
 		return (NULL);
 	}
 	dump_index = dump_index == (sizeof(dump) / sizeof(dump[0]) - 1) ?
@@ -60,7 +64,7 @@ char		*caps__keycode_dump(const size_t keycode_size, const char *keycode)
 								sizeof(dump[0]),
 								dump[dump_index]))
 	{
-		LOG_ERROR("internal_caps__keycode_dump() failed keycode %s\r", keycode);
+		log_error("internal_caps__keycode_dump() failed keycode %s\r", keycode);
 		return (NULL);
 	}
 	return (dump[dump_index]);

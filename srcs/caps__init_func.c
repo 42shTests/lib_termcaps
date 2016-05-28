@@ -12,7 +12,7 @@
 
 #include "internal_caps.h"
 #include "types.h"
-#include "log.h"
+
 
 #include "libft.h"
 
@@ -22,8 +22,10 @@ bool	caps__init_func(const char *in_tcapcode, int (*in_func)())
 	unsigned int		i;
 
 	if (!in_tcapcode || !in_func)
-		FATAL("in_tcapcode %p in_func %p", \
-				(void *)in_tcapcode, (void *)in_func);
+	{
+		log_fatal("in_tcapcode %p in_func %p", (void *)in_tcapcode, (void *)in_func);
+		return 0;
+	}
 	caps__get_context(&context);
 	i = 0;
 	while (i < context->map_size)

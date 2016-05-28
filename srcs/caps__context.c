@@ -12,7 +12,7 @@
 
 #include "internal_caps.h"
 #include "types.h"
-#include "log.h"
+
 
 # define MAP_ENTRY(d,c,k,f) {.description=d, .tcapcode=c, .keycode=k, .func=f}
 

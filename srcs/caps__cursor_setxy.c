@@ -1,6 +1,6 @@
 #include "internal_caps.h"
 #include "termcap.h"
-#include "log.h"
+
 
 bool	caps__cursor_setxy(int x, int y)
 {
@@ -9,10 +9,16 @@ bool	caps__cursor_setxy(int x, int y)
 
 	cm = tgetstr("cm", NULL);
 	if (!cm)
-		FATAL("tgetstr() failed %s", "");
+	{
+		log_fatal("tgetstr() failed %s", "");
+		return 0;
+	}
 	cmd = tgoto(cm, y, x);
 	if (!cmd)
-		FATAL("tgoto() failed x %d y %d", x, y);
+	{
+		log_fatal("tgoto() failed x %d y %d", x, y);
+		return 0;
+	}
 	caps__print(cmd, 0);
 	return (TRUE);
 }

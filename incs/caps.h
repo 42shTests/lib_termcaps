@@ -3,6 +3,7 @@
 
 # include "types.h"
 # include <unistd.h>
+# include "logger.h"
 
 # define CAPS__TERMTYPE getenv("TERM")
 //# define CAPS__TERMTYPE "ansi"

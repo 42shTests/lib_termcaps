@@ -12,7 +12,7 @@
 
 #include "internal_caps.h"
 #include "types.h"
-#include "log.h"
+
 
 bool	caps__finalize(void)
 {

@@ -19,14 +19,9 @@ static int	internal_caps__putc(int c)
 	return (write(1, &c, 1));
 }
 
-#include "log.h"
+
 extern int	caps__print(const char *s, const size_t line_count)
 {
-	if (ospeed < 0)
-	{
-		LOG_WARNING("ospeed %d", ospeed);
-		ospeed = 300;
-	}
 	if (!s)
 	{
 		tputs("(Null)", 1, &internal_caps__putc);

@@ -1,5 +1,5 @@
 #include "types.h"
-#include "log.h"
+
 #include "internal_caps.h"
 
 bool	caps__exec_func(const size_t in_keycode_size,

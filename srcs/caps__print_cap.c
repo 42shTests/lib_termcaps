@@ -12,7 +12,7 @@
 
 #include "internal_caps.h"
 #include "types.h"
-#include "log.h"
+
 
 void				caps__print_cap(const t_caps_cap value, int lines)
 {

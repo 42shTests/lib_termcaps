@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "internal_caps.h"
-#include "log.h" //TEMP
+ //TEMP
 
 void	caps__delete_line(const size_t line_offset)
 {
@@ -23,7 +23,7 @@ void	caps__delete_line(const size_t line_offset)
 
 	if (!caps__cursor_getxy(&x, &y))
 	{
-		LOG_ERROR("caps__cursor_getxy() failed %s", "");
+		log_error("caps__cursor_getxy() failed %s", "");
 		return ;
 	}
 	caps__print_cap(CAPS__CARRIAGE_RETURN, 0);

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "types.h"
-#include "log.h"
+
 #include "internal_caps.h"
 
 bool	caps__keycode_find(const size_t in_keycode_size, const char *in_keycode)
@@ -21,7 +21,10 @@ bool	caps__keycode_find(const size_t in_keycode_size, const char *in_keycode)
 	size_t				i;
 
 	if (in_keycode_size == 0 || in_keycode == NULL)
-		FATAL("in_keycode_size %zu in_keycode %p", in_keycode_size, in_keycode);
+	{
+		log_fatal("in_keycode_size %zu in_keycode %p", in_keycode_size, in_keycode);
+		return 0;
+	}
 	keycode.size = in_keycode_size;
 	keycode.bytes = (char *)in_keycode;
 	caps__get_context(&context);
@@ -30,11 +33,11 @@ bool	caps__keycode_find(const size_t in_keycode_size, const char *in_keycode)
 	{
 		if (!caps__keycode_cmp(keycode, context->map[i].keycode))
 		{
-			LOG_DEBUG("You typed %s\r", context->map[i].description);
+			log_debug("You typed %s\r", context->map[i].description);
 			return (TRUE);
 		}
 		i++;
 	}
-	LOG_DEBUG("Could not find the code %s\r", caps__keycode_dump(in_keycode_size, in_keycode));
+	log_debug("Could not find the code %s\r", caps__keycode_dump(in_keycode_size, in_keycode));
 	return (FALSE);
 }

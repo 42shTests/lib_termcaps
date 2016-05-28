@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "internal_caps.h"
-#include "log.h"
+
 #include <termcap.h>
 
 extern size_t	caps__win(const char *cmd)
@@ -19,9 +19,12 @@ extern size_t	caps__win(const char *cmd)
 	t_internal_context	*context;
 
 	if (!cmd)
-		FATAL("cmd %p", (void *)cmd);
+	{
+		log_fatal("cmd %p", (void *)cmd);
+		return 0;
+	}
 	caps__get_context(&context);
 //	if (!tgetent(context->termbuffer, context->termtype))
-//		FATAL("tgetent() failed %s", "");
+//		log_fatal("tgetent() failed %s", "");
 	return (tgetnum((char *)cmd));
 }

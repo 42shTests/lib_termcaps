@@ -12,7 +12,7 @@
 
 #include "internal_caps.h"
 #include "types.h"
-#include "log.h"
+
 #include "libft.h"
 
 #include <stdlib.h>
@@ -32,7 +32,7 @@ static bool	internal_caps__initialize_caps(t_internal_context *caps)
 		caps->caps[i] = tgetstr(capcodes[i], &caps->buffaddr);
 		if (i != caps->caps_size - 1 && !caps->caps[i])
 		{
-			LOG_ERROR("tgetstr() failed on %s", capcodes[i]);
+			log_error("tgetstr() failed on %s", capcodes[i]);
 		}
 		else if (i == caps->caps_size - 1)
 		{
@@ -59,7 +59,7 @@ static bool	internal_caps__initialize_keycodes(t_internal_context *caps)
 			{
 				caps->map[i].keycode.bytes = keycode;
 				caps->map[i].keycode.size = ft_strlen(keycode);
-				//LOG_DEBUG("Successfully initialized %s", caps->map[i].description);
+				//log_debug("Successfully initialized %s", caps->map[i].description);
 			}
 			//else
 			//LOG_WARNING("Could not find %s", caps->map[i].description);
@@ -77,10 +77,16 @@ static bool	internal_caps__tgetent(t_internal_context *caps)
 
 	termtype = CAPS__TERMTYPE;
 	if (!termtype)
-		FATAL("getenv(\"TERM\") failed %s", "");
+	{
+		log_fatal("getenv(\"TERM\") failed %s", "");
+		return (0);
+	}
 	caps->termtype = termtype;
 	if (!tgetent(caps->termbuffer, termtype))
-		FATAL("tgetent() failed termtype %s", termtype);
+	{
+		log_fatal("tgetent() failed termtype %s", termtype);
+		return (0);
+	}
 	caps->buffaddr = caps->termbuffer;
 	/* For termcaps functions */
 	temp = tgetstr("pc", &caps->buffaddr);
@@ -96,10 +102,19 @@ bool		caps__initialize(void)
 
 	caps__get_context(&caps);
 	if (!internal_caps__tgetent(caps))
-		FATAL("interal_caps__tgetent() failed %s", "");
+	{
+		log_fatal("interal_caps__tgetent() failed %s", "");
+		return (0);
+	}
 	if (!internal_caps__initialize_keycodes(caps))
-		FATAL("internal_caps__initialize_keycodes() failed %s", "");
+	{
+		log_fatal("internal_caps__initialize_keycodes() failed %s", "");
+		return (0);
+	}
 	if (!internal_caps__initialize_caps(caps))
-		FATAL("internal_caps__initialize_caps() failed %s", "");
+	{
+		log_fatal("internal_caps__initialize_caps() failed %s", "");
+		return (0);
+	}
 	return (TRUE);
 }
