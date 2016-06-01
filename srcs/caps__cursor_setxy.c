@@ -19,6 +19,7 @@ bool	caps__cursor_setxy(int x, int y)
 		log_fatal("tgoto() failed x %d y %d", x, y);
 		return 0;
 	}
+	log_debug("tgoto() returned {%s}", cmd);
 	caps__print(cmd, 0);
 	return (TRUE);
 }
