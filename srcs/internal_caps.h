@@ -30,6 +30,7 @@ typedef struct	s_key_map
 
 typedef struct	s_internal_context
 {
+	int			fd;
 	char		*termtype;
 	char		termbuffer[2048];
 	char		*buffaddr;
