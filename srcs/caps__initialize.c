@@ -96,12 +96,11 @@ static bool	internal_caps__tgetent(t_internal_context *caps)
 	return (TRUE);
 }
 
-bool		caps__initialize(const int fd)
+bool		caps__initialize(void)
 {
 	t_internal_context	*caps;
 
 	caps__get_context(&caps);
-	caps->fd = fd;
 	if (!internal_caps__tgetent(caps))
 	{
 		log_fatal("interal_caps__tgetent() failed %s", "");

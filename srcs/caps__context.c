@@ -20,7 +20,6 @@
 # define KEYCODE_INIT(desc,keycode)	  MAP_ENTRY(desc,NULL,(keycode),NULL)
 
 static t_internal_context g_internal_context = {
-	.fd = -1,
 	.termtype = NULL,
 	.buffaddr = NULL,
 	.map_size = 0,
