@@ -5,22 +5,20 @@
 #define ANSI_Q_CURSORXY			"\033[6n"
 #define ANSI_Q_CURSORXY_SIZE	 sizeof("\033[6n") - 1
 
-bool	caps__cursor_getxy(int *x, int *y)
+bool	s_caps__cursor_getxy(int *x, int *y)
 {
 	char	buf[16];
 	size_t	i;
 
-	*x = 0;
-	*y = 0;
 	if (write(1, ANSI_Q_CURSORXY, ANSI_Q_CURSORXY_SIZE) != ANSI_Q_CURSORXY_SIZE)
 	{
 		log_fatal("write() failed %s", "");
-		return 0;
+		return (false);
 	}
 	if (read(0, buf, sizeof(buf)) == sizeof(buf))
 	{
 		log_fatal("buf too small %zu", (size_t)sizeof(buf));
-		return 0;
+		return (false);
 	}
 	i = sizeof("\033[") - 1;
 	*x = ft_atoi(buf + i);
@@ -28,6 +26,27 @@ bool	caps__cursor_getxy(int *x, int *y)
 		i++;
 	i += sizeof(";") - 1;
 	*y = ft_atoi(buf + i);
-	return (TRUE);
+	return (true);
+}
+
+bool	caps__cursor_getxy(int *out_x, int *out_y)
+{
+	int		x;
+	int		y;
+
+	if (out_x != NULL)
+		*out_x = 0;
+	if (out_y != NULL)
+		*out_y = 0;
+	if (!s_caps__cursor_getxy(&x, &y))
+	{
+		log_error("s_caps__cursor_getxy() failed");
+		return (false);
+	}
+	if (out_x)
+		*out_x = x;
+	if (out_y)
+		*out_y = y;
+	return (true);
 }
 
