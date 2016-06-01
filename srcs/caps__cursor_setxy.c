@@ -4,14 +4,19 @@
 
 bool	caps__cursor_setxy(int x, int y)
 {
-	char	*cm;
-	char	*cmd;
+	t_internal_context	*context;
+	static char			*cm = NULL;
+	char				*cmd;
 
-	cm = tgetstr("cm", NULL);
-	if (!cm)
+	if (cm == NULL)
 	{
-		log_fatal("tgetstr() failed %s", "");
-		return 0;
+		caps__get_context(&context);
+		cm = tgetstr("cm", &context->buffaddr);
+		if (!cm)
+		{
+			log_fatal("tgetstr(\"cm\") failed");
+			return 0;
+		}
 	}
 	cmd = tgoto(cm, y, x);
 	if (!cmd)
