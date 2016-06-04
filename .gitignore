@@ -10,6 +10,7 @@ test
 
 # editors
 .*.swp
+.idea
 
 # others
 ._.DS_Store
