@@ -47,7 +47,7 @@ typedef struct	s_internal_context
 */
 extern void		caps__get_context (t_internal_context **context);
 
-t_list			*node_key__create(const char *keycode, int (*func)());
+t_list			*node_key__create(const size_t size, const char *keycode, int (*func)());
 void			list_key__destroy(t_list *head);
 
 #endif

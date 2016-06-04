@@ -1,20 +1,18 @@
 #include "internal_caps.h"
 #include "libft.h"
 
-t_list		*node_key__create(const char *keycode, int (*func)())
+t_list		*node_key__create(const size_t size, const char *keycode, int (*func)())
 {
 	void		*addr;
 	t_node_key	*new;
-	size_t		keycode_size;
 
-	keycode_size = ft_strlen(keycode);
-	addr = malloc(sizeof(t_node_key) + keycode_size + 1);
+	addr = malloc(sizeof(t_node_key) + size);
 	if (!addr)
 		return (NULL);
 	new = addr;
 	new->keycode.bytes = addr + sizeof(t_node_key);
-	ft_strcpy(new->keycode.bytes, keycode);
-	new->keycode.size = keycode_size;
+	ft_memcpy(new->keycode.bytes, keycode, size);
+	new->keycode.size = size;
 	new->func = func;
 	return (&new->list);
 }

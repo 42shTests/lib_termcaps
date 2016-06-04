@@ -12,6 +12,7 @@
 
 #include "internal_caps.h"
 #include "types.h"
+#include "libft.h"
 #include <termcap.h>
 
 bool	caps__init_func(const char *tcapcode, int (*func)())
@@ -32,7 +33,7 @@ bool	caps__init_func(const char *tcapcode, int (*func)())
 		log_info("Could not intialize %s", tcapcode);
 		return (false);
 	}
-	new_key = node_key__create(keycode, func);
+	new_key = node_key__create(ft_strlen(keycode), keycode, func);
 	if (!new_key)
 	{
 		log_fatal("node_key__create() failed");
