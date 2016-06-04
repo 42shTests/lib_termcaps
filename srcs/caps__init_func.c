@@ -29,8 +29,8 @@ bool	caps__init_func(const char *tcapcode, int (*func)())
 	keycode = tgetstr(tcapcode, &context->buffaddr);
 	if (!keycode)
 	{
-		log_error("Could not intialize %s", tcapcode);
-		return (true);
+		log_info("Could not intialize %s", tcapcode);
+		return (false);
 	}
 	new_key = node_key__create(keycode, func);
 	if (!new_key)
