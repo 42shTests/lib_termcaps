@@ -29,7 +29,8 @@ SRC=caps__context.c\
 	caps__delete_line.c\
 	caps__cursor_to_offset.c\
 	caps__cursor_getxy.c\
-	caps__cursor_setxy.c
+	caps__cursor_setxy.c\
+	node__key.c\
 
 OBJ=$(addprefix $(BUILD_DIR)/,$(SRC:.c=.o))
 

@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   caps__init_func_by_keycode.c                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abombard <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/09 15:50:07 by abombard          #+#    #+#             */
-/*   Updated: 2016/05/26 13:02:33 by abombard         ###   ########.fr       */
-/*                                                                            */
+/*																			  */
+/*														  :::	   ::::::::	  */
+/*	 caps__init_func_by_keycode.c						:+:		 :+:	:+:	  */
+/*													  +:+ +:+		  +:+	  */
+/*	 By: abombard <marvin@42.fr>					+#+	 +:+	   +#+		  */
+/*												  +#+#+#+#+#+	+#+			  */
+/*	 Created: 2016/05/09 15:50:07 by abombard		   #+#	  #+#			  */
+/*	 Updated: 2016/05/26 13:02:33 by abombard		  ###	########.fr		  */
+/*																			  */
 /* ************************************************************************** */
 
 #include "internal_caps.h"
@@ -16,26 +16,23 @@
 
 #include <termcap.h>
 
-bool	caps__init_func_by_keycode(const t_buffer in_keycode, int (*in_func)())
+bool	caps__init_func_by_keycode(const char *keycode, int (*func)())
 {
 	t_internal_context	*context;
-	size_t				i;
+	t_list				*new_key;
 
-	if (in_keycode.size == 0 || !in_keycode.bytes)
+	if (keycode == NULL || func == NULL)
 	{
-		log_fatal("in_keycode.size %zu in_keycode.bytes %p", in_keycode.size, (void *)in_keycode.bytes);
-		return 0;
+		log_fatal("keycode %p", (void *)keycode);
+		return (false);
 	}
 	caps__get_context(&context);
-	i = 0;
-	while (i < context->map_size)
+	new_key = node_key__create(keycode, func);
+	if (!new_key)
 	{
-		if (!caps__keycode_cmp(in_keycode, context->map[i].keycode))
-		{
-			context->map[i].func = in_func;
-			return (TRUE);
-		}
-		i++;
+		log_fatal("node_key__create() failed");
+		return (false);
 	}
-	return (FALSE);
+	list_push_back(new_key, &context->key_head);
+	return (false);
 }

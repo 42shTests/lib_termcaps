@@ -13,8 +13,6 @@
 #include "internal_caps.h"
 #include "types.h"
 
-#include "libft.h"
-
 #include <stdlib.h>
 #include <termcap.h>
 
@@ -43,33 +41,6 @@ static bool	internal_caps__initialize_caps(t_internal_context *caps)
 	return (TRUE);
 }
 
-static bool	internal_caps__initialize_keycodes(t_internal_context *caps)
-{
-	char		*keycode;
-	size_t		i;
-
-	caps->map_size = sizeof(caps->map) / sizeof(caps->map[0]);
-	i = 0;
-	while (i < caps->map_size)
-	{
-		if (caps->map[i].tcapcode)
-		{
-			keycode = tgetstr(caps->map[i].tcapcode, &caps->buffaddr);
-			if (keycode)
-			{
-				caps->map[i].keycode.bytes = keycode;
-				caps->map[i].keycode.size = ft_strlen(keycode);
-				//log_debug("Successfully initialized %s", caps->map[i].description);
-			}
-			//else
-			//LOG_WARNING("Could not find %s", caps->map[i].description);
-		}
-		i++;
-	}
-	return (TRUE);
-}
-
-#include <termios.h>
 static bool	internal_caps__tgetent(t_internal_context *caps)
 {
 	char		*termtype;
@@ -104,11 +75,6 @@ bool		caps__initialize(void)
 	if (!internal_caps__tgetent(caps))
 	{
 		log_fatal("interal_caps__tgetent() failed %s", "");
-		return (0);
-	}
-	if (!internal_caps__initialize_keycodes(caps))
-	{
-		log_fatal("internal_caps__initialize_keycodes() failed %s", "");
 		return (0);
 	}
 	if (!internal_caps__initialize_caps(caps))
