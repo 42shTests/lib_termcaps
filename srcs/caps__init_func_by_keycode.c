@@ -24,15 +24,15 @@ bool	caps__init_func_by_keycode(const char *keycode, int (*func)())
 	if (keycode == NULL || func == NULL)
 	{
 		log_fatal("keycode %p", (void *)keycode);
-		return (false);
+		return (FALSE);
 	}
 	caps__get_context(&context);
 	new_key = node_key__create(keycode, func);
 	if (!new_key)
 	{
 		log_fatal("node_key__create() failed");
-		return (false);
+		return (FALSE);
 	}
 	list_push_back(new_key, &context->key_head);
-	return (false);
+	return (TRUE);
 }
