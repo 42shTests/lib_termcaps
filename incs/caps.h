@@ -191,7 +191,7 @@ bool				caps__exec_func (const size_t keycode_size, const char *keycode, void *i
 /*
 ** caps initialize / finalize
 */
-bool				caps__initialize (void);
+bool				caps__initialize (const int fd);
 bool				caps__finalize (void);
 
 #endif
