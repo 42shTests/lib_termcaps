@@ -7,25 +7,27 @@
 
 bool	s_caps__cursor_getxy(int *x, int *y)
 {
-	char	buf[16];
-	size_t	i;
+	t_internal_context	*context;
+	char				buf[16];
+	size_t				i;
 
-	if (write(1, ANSI_Q_CURSORXY, ANSI_Q_CURSORXY_SIZE) != ANSI_Q_CURSORXY_SIZE)
+	caps__get_context(&context);
+	if (write(context->fd, ANSI_Q_CURSORXY, ANSI_Q_CURSORXY_SIZE) != ANSI_Q_CURSORXY_SIZE)
 	{
 		log_fatal("write() failed %s", "");
 		return (false);
 	}
-	if (read(0, buf, sizeof(buf)) == sizeof(buf))
+	if (read(context->fd, buf, sizeof(buf)) == sizeof(buf))
 	{
 		log_fatal("buf too small %zu", (size_t)sizeof(buf));
 		return (false);
 	}
 	i = sizeof("\033[") - 1;
-	*x = ft_atoi(buf + i);
+	*y = ft_atoi(buf + i);
 	while (ft_isdigit(buf[i]))
 		i++;
 	i += sizeof(";") - 1;
-	*y = ft_atoi(buf + i);
+	*x = ft_atoi(buf + i);
 	return (true);
 }
 
@@ -49,4 +51,3 @@ bool	caps__cursor_getxy(int *out_x, int *out_y)
 		*out_y = y;
 	return (true);
 }
-
