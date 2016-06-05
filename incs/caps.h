@@ -123,7 +123,7 @@ size_t				caps__win (const char *cmd);
 /*
 ** caps init func: initialize function from tcapcode
 */
-bool				caps__init_func (const char *in_tcapcode, int (*in_func)());
+bool				caps__init_func (char *in_tcapcode, int (*in_func)());
 
 /*
 ** caps meta keycodes

@@ -15,7 +15,7 @@
 #include "libft.h"
 #include <termcap.h>
 
-bool	caps__init_func(const char *tcapcode, int (*func)())
+bool	caps__init_func(char *tcapcode, int (*func)())
 {
 	t_internal_context	*context;
 	char				*keycode;
