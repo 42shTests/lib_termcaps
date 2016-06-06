@@ -6,7 +6,7 @@
 /*	 By: abombard <marvin@42.fr>					+#+	 +:+	   +#+		  */
 /*												  +#+#+#+#+#+	+#+			  */
 /*	 Created: 2016/03/31 16:58:07 by abombard		   #+#	  #+#			  */
-/*   Updated: 2016/05/09 16:01:35 by abombard         ###   ########.fr       */
+/*	 Updated: 2016/05/09 16:01:35 by abombard		  ###	########.fr		  */
 /*																			  */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ static bool minishell__initialize_key_map(void)
 
 int main()
 {
-	if (!caps__initialize())
+	if (!caps__initialize(1))
 	{
 		log_error("caps_initialize() failed %s", "");
 		return (1);

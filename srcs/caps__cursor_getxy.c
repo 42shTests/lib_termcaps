@@ -45,6 +45,7 @@ bool	caps__cursor_getxy(int *out_x, int *out_y)
 		log_error("s_caps__cursor_getxy() failed");
 		return (false);
 	}
+	log_debug("x %d y %d", x, y);
 	if (out_x)
 		*out_x = x;
 	if (out_y)
