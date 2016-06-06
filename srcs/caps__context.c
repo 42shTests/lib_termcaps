@@ -13,50 +13,40 @@
 #include "internal_caps.h"
 #include "types.h"
 
-
-# define MAP_ENTRY(d,c,k,f) {.description=d, .tcapcode=c, .keycode=k, .func=f}
-
-# define TCAPCODE_INIT(desc,tcap) MAP_ENTRY(desc,tcap,BUFFER_INIT(0,NULL),NULL)
-# define KEYCODE_INIT(desc,keycode)	  MAP_ENTRY(desc,NULL,(keycode),NULL)
-
-static t_internal_context g_internal_context = {
-	.termtype = NULL,
-	.buffaddr = NULL,
-	.map_size = 0,
-	.map = {
-		KEYCODE_INIT("meta space", CAPS__KEYCODE_CTRL_SPACE),
-		KEYCODE_INIT("meta a", CAPS__KEYCODE_CTRL_A),
-		KEYCODE_INIT("meta b", CAPS__KEYCODE_CTRL_B),
-		KEYCODE_INIT("meta c", CAPS__KEYCODE_CTRL_C),
-		KEYCODE_INIT("meta d", CAPS__KEYCODE_CTRL_D),
-		KEYCODE_INIT("meta e", CAPS__KEYCODE_CTRL_E),
-		KEYCODE_INIT("meta f", CAPS__KEYCODE_CTRL_F),
-		KEYCODE_INIT("meta g", CAPS__KEYCODE_CTRL_G),
-		KEYCODE_INIT("meta h", CAPS__KEYCODE_CTRL_H),
-		KEYCODE_INIT("meta i", CAPS__KEYCODE_CTRL_I),
-		KEYCODE_INIT("meta j", CAPS__KEYCODE_CTRL_J),
-		KEYCODE_INIT("meta k", CAPS__KEYCODE_CTRL_K),
-		KEYCODE_INIT("meta l", CAPS__KEYCODE_CTRL_L),
-		KEYCODE_INIT("meta m / enter", CAPS__KEYCODE_CTRL_M),
-		KEYCODE_INIT("meta n", CAPS__KEYCODE_CTRL_N),
-		KEYCODE_INIT("meta o", CAPS__KEYCODE_CTRL_O),
-		KEYCODE_INIT("meta p", CAPS__KEYCODE_CTRL_P),
-		KEYCODE_INIT("meta q", CAPS__KEYCODE_CTRL_Q),
-		KEYCODE_INIT("meta r", CAPS__KEYCODE_CTRL_R),
-		KEYCODE_INIT("meta s", CAPS__KEYCODE_CTRL_S),
-		KEYCODE_INIT("meta t", CAPS__KEYCODE_CTRL_T),
-		KEYCODE_INIT("meta u", CAPS__KEYCODE_CTRL_U),
-		KEYCODE_INIT("meta v", CAPS__KEYCODE_CTRL_V),
-		KEYCODE_INIT("meta w", CAPS__KEYCODE_CTRL_W),
-		KEYCODE_INIT("meta x", CAPS__KEYCODE_CTRL_X),
-		KEYCODE_INIT("meta y", CAPS__KEYCODE_CTRL_Y),
-		KEYCODE_INIT("meta z", CAPS__KEYCODE_CTRL_Z),
-		KEYCODE_INIT("meta cursor left key", CAPS__KEYCODE_CTRL_CURSOR_LEFT),
-		KEYCODE_INIT("meta cursor right key", CAPS__KEYCODE_CTRL_CURSOR_RIGHT),
-		KEYCODE_INIT("meta cursor up key", CAPS__KEYCODE_CTRL_CURSOR_UP),
-		KEYCODE_INIT("meta cursor down key", CAPS__KEYCODE_CTRL_CURSOR_DOWN),
-		KEYCODE_INIT("escape key", CAPS__KEYCODE_ESCAPE),
-		KEYCODE_INIT("backspace key", CAPS__KEYCODE_BACKSPACE),
+/*
+		{ .keycode = CAPS__KEYCODE_CTRL_SPACE },
+		{ .keycode = CAPS__KEYCODE_CTRL_A },
+		{ .keycode = CAPS__KEYCODE_CTRL_B },
+		{ .keycode = CAPS__KEYCODE_CTRL_C },
+		{ .keycode = CAPS__KEYCODE_CTRL_D },
+		{ .keycode = CAPS__KEYCODE_CTRL_E },
+		{ .keycode = CAPS__KEYCODE_CTRL_F },
+		{ .keycode = CAPS__KEYCODE_CTRL_G },
+		{ .keycode = CAPS__KEYCODE_CTRL_H },
+		{ .keycode = CAPS__KEYCODE_CTRL_I },
+		{ .keycode = CAPS__KEYCODE_CTRL_J },
+		{ .keycode = CAPS__KEYCODE_CTRL_K },
+		{ .keycode = CAPS__KEYCODE_CTRL_L },
+		{ .keycode = CAPS__KEYCODE_CTRL_M },
+		{ .keycode = CAPS__KEYCODE_CTRL_N },
+		{ .keycode = CAPS__KEYCODE_CTRL_O },
+		{ .keycode = CAPS__KEYCODE_CTRL_P },
+		{ .keycode = CAPS__KEYCODE_CTRL_Q },
+		{ .keycode = CAPS__KEYCODE_CTRL_R },
+		{ .keycode = CAPS__KEYCODE_CTRL_S },
+		{ .keycode = CAPS__KEYCODE_CTRL_T },
+		{ .keycode = CAPS__KEYCODE_CTRL_U },
+		{ .keycode = CAPS__KEYCODE_CTRL_V },
+		{ .keycode = CAPS__KEYCODE_CTRL_W },
+		{ .keycode = CAPS__KEYCODE_CTRL_X },
+		{ .keycode = CAPS__KEYCODE_CTRL_Y },
+		{ .keycode = CAPS__KEYCODE_CTRL_Z },
+		{ .keycode = CAPS__KEYCODE_CTRL_CURSOR_LEFT },
+		{ .keycode = CAPS__KEYCODE_CTRL_CURSOR_RIGHT },
+		{ .keycode = CAPS__KEYCODE_CTRL_CURSOR_UP },
+		{ .keycode = CAPS__KEYCODE_CTRL_CURSOR_DOWN },
+		{ .keycode = CAPS__KEYCODE_ESCAPE },
+		{ .keycode = CAPS__KEYCODE_BACKSPACE },
 		TCAPCODE_INIT("shifted save key", "!1"),
 		TCAPCODE_INIT("shifted suspend key", "!2"),
 		TCAPCODE_INIT("shifted undo key", "!3"),
@@ -169,9 +159,18 @@ static t_internal_context g_internal_context = {
 		TCAPCODE_INIT("Program key %1 to execute string %2 in local mode", "pl"),
 		TCAPCODE_INIT("Program key %1 to send string %2 to computer", "px"),
 	}
-};
+*/
 
 void	caps__get_context(t_internal_context **out_context)
 {
-	*out_context = &g_internal_context;
+	static t_internal_context internal_context = {
+		.termtype = NULL,
+		.buffaddr = NULL,
+		.key_head = {
+			.prev = &internal_context.key_head,
+			.next = &internal_context.key_head
+		},
+	};
+
+	*out_context = &internal_context;
 }

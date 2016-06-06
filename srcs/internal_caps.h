@@ -15,18 +15,18 @@
 
 # include "caps.h"
 # include "types.h"
+# include "list.h"
 # include <unistd.h>
 
 # define CAPS__MAP_KEY_COUNT		144
 # define CAPS__CAP_COUNT			9
 
-typedef struct	s_key_map
+typedef struct	s_node_key
 {
-	char		*tcapcode;
 	t_buffer	keycode;
-	char		*description;
 	int			(*func)();
-}				t_key_map;
+	t_list		list;
+}				t_node_key;
 
 typedef struct	s_internal_context
 {
@@ -35,16 +35,19 @@ typedef struct	s_internal_context
 	char		termbuffer[2048];
 	char		*buffaddr;
 
-	size_t		map_size;
-	t_key_map	map[CAPS__MAP_KEY_COUNT];
+	t_list		key_head;
 
 	size_t		caps_size;
 	char		*caps[CAPS__CAP_COUNT];
 }				t_internal_context;
 
+
 /*
 ** getter for caps
 */
 extern void		caps__get_context (t_internal_context **context);
+
+t_list			*node_key__create(const size_t size, const char *keycode, int (*func)());
+void			list_key__destroy(t_list *head);
 
 #endif

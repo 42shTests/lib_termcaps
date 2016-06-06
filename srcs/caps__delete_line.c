@@ -1,17 +1,16 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   caps__delete_line.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abombard <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/09 15:51:24 by abombard          #+#    #+#             */
-/*   Updated: 2016/05/26 13:19:21 by abombard         ###   ########.fr       */
-/*                                                                            */
+/*																			  */
+/*														  :::	   ::::::::	  */
+/*	 caps__delete_line.c								:+:		 :+:	:+:	  */
+/*													  +:+ +:+		  +:+	  */
+/*	 By: abombard <marvin@42.fr>					+#+	 +:+	   +#+		  */
+/*												  +#+#+#+#+#+	+#+			  */
+/*	 Created: 2016/05/09 15:51:24 by abombard		   #+#	  #+#			  */
+/*	 Updated: 2016/06/05 18:22:56 by abombard		  ###	########.fr		  */
+/*																			  */
 /* ************************************************************************** */
 
 #include "internal_caps.h"
- //TEMP
 
 void	caps__delete_line(const size_t line_offset)
 {
@@ -19,7 +18,6 @@ void	caps__delete_line(const size_t line_offset)
 	size_t	line_count;
 	size_t	i;
 
-	caps__print_cap(CAPS__CARRIAGE_RETURN, 0);
 	col_count = caps__win(WIN_COLUMNS);
 	if (col_count != 0)
 	{
@@ -30,6 +28,7 @@ void	caps__delete_line(const size_t line_offset)
 			caps__print_cap(CAPS__UP, 0);
 			i++;
 		}
-		caps__print_cap(CAPS__CLEAR_TO_END_OF_SCREEN, caps__win(WIN_LINE));
+		caps__print_cap(CAPS__CARRIAGE_RETURN, 0);
+		caps__print_cap(CAPS__CLEAR_TO_END_OF_SCREEN, line_count);
 	}
 }

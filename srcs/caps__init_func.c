@@ -1,44 +1,44 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   caps__init_func.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abombard <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/09 15:49:10 by abombard          #+#    #+#             */
-/*   Updated: 2016/05/26 13:02:22 by abombard         ###   ########.fr       */
-/*                                                                            */
+/*																			  */
+/*														  :::	   ::::::::	  */
+/*	 caps__init_func.c									:+:		 :+:	:+:	  */
+/*													  +:+ +:+		  +:+	  */
+/*	 By: abombard <marvin@42.fr>					+#+	 +:+	   +#+		  */
+/*												  +#+#+#+#+#+	+#+			  */
+/*	 Created: 2016/05/09 15:49:10 by abombard		   #+#	  #+#			  */
+/*	 Updated: 2016/05/26 13:02:22 by abombard		  ###	########.fr		  */
+/*																			  */
 /* ************************************************************************** */
 
 #include "internal_caps.h"
 #include "types.h"
-
-
 #include "libft.h"
+#include <termcap.h>
 
-bool	caps__init_func(const char *in_tcapcode, int (*in_func)())
+bool	caps__init_func(char *tcapcode, int (*func)())
 {
 	t_internal_context	*context;
-	unsigned int		i;
+	char				*keycode;
+	t_list				*new_key;
 
-	if (!in_tcapcode || !in_func)
+	if (!tcapcode || !func)
 	{
-		log_fatal("in_tcapcode %p in_func %p", (void *)in_tcapcode, (void *)in_func);
-		return 0;
+		log_fatal("tcapcode %p func %p", (void *)tcapcode, (void *)func);
+		return (false);
 	}
 	caps__get_context(&context);
-	i = 0;
-	while (i < context->map_size)
+	keycode = tgetstr(tcapcode, &context->buffaddr);
+	if (!keycode)
 	{
-		if (context->map[i].tcapcode)
-		{
-			if (!ft_strcmp(in_tcapcode, context->map[i].tcapcode))
-			{
-				context->map[i].func = in_func;
-				return (TRUE);
-			}
-		}
-		i++;
+		log_info("Could not intialize %s", tcapcode);
+		return (false);
 	}
-	return (FALSE);
+	new_key = node_key__create(ft_strlen(keycode), keycode, func);
+	if (!new_key)
+	{
+		log_fatal("node_key__create() failed");
+		return (NULL);
+	}
+	list_push_back(new_key, &context->key_head);
+	return (true);
 }

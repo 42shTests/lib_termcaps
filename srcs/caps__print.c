@@ -6,7 +6,7 @@
 /*   By: abombard <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/09 15:53:57 by abombard          #+#    #+#             */
-/*   Updated: 2016/06/01 17:56:42 by abombard         ###   ########.fr       */
+/*   Updated: 2016/06/05 17:11:25 by abombard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 
 static int	internal_caps__putc(int c)
 {
-	return (write(1, &c, 1));
+	t_internal_context	*context;
+
+	caps__get_context(&context);
+	return (write(context->fd, &c, 1));
 }
 
 

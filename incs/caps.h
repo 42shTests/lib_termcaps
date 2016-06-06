@@ -123,7 +123,7 @@ size_t				caps__win (const char *cmd);
 /*
 ** caps init func: initialize function from tcapcode
 */
-bool				caps__init_func (const char *in_tcapcode, int (*in_func)());
+bool				caps__init_func (char *in_tcapcode, int (*in_func)());
 
 /*
 ** caps meta keycodes
@@ -166,7 +166,7 @@ bool				caps__init_func (const char *in_tcapcode, int (*in_func)());
 /*
 ** caps init func: initialize function from keycode
 */
-bool				caps__init_func_by_keycode (const t_buffer keycode, int (*in_func)());
+bool				caps__init_func_by_keycode (const t_buffer keycode, int (*func)());
 
 /*
 ** caps keycode dump
@@ -191,7 +191,7 @@ bool				caps__exec_func (const size_t keycode_size, const char *keycode, void *i
 /*
 ** caps initialize / finalize
 */
-bool				caps__initialize (void);
+bool				caps__initialize (const int fd);
 bool				caps__finalize (void);
 
 #endif

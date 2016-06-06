@@ -18,26 +18,26 @@ bool	caps__keycode_find(const size_t in_keycode_size, const char *in_keycode)
 {
 	t_internal_context	*context;
 	t_buffer			keycode;
-	size_t				i;
+	t_list				*pos;
+	t_node_key			*key;
 
 	if (in_keycode_size == 0 || in_keycode == NULL)
 	{
 		log_fatal("in_keycode_size %zu in_keycode %p", in_keycode_size, in_keycode);
-		return 0;
+		return (false);
 	}
 	keycode.size = in_keycode_size;
 	keycode.bytes = (char *)in_keycode;
 	caps__get_context(&context);
-	i = 0;
-	while (i < context->map_size)
+	LIST_FOREACH(&context->key_head, pos)
 	{
-		if (!caps__keycode_cmp(keycode, context->map[i].keycode))
+		key = CONTAINER_OF(pos, t_node_key, list);
+		if (!caps__keycode_cmp(keycode, key->keycode))
 		{
-			log_debug("You typed %s\r", context->map[i].description);
-			return (TRUE);
+			log_debug("You typed %s\r", key->keycode);
+			return (true);
 		}
-		i++;
 	}
 	log_debug("Could not find the code %s\r", caps__keycode_dump(in_keycode_size, in_keycode));
-	return (FALSE);
+	return (false);
 }
