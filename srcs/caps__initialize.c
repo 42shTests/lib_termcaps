@@ -18,8 +18,8 @@
 
 static bool	internal_caps__initialize_caps(t_internal_context *caps)
 {
-	char	*capcodes[] = {
-		"nd", "le", "up", "do", "dc", "ce", "cd", "cr"
+	char	*capcodes[CAPS__CAP_COUNT] = {
+		"nd", "le", "up", "do", "dc", "ce", "cd", "cl", "cr"
 	};
 	size_t	i;
 

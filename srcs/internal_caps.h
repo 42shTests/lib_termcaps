@@ -19,7 +19,7 @@
 # include <unistd.h>
 
 # define CAPS__MAP_KEY_COUNT		144
-# define CAPS__CAP_COUNT			9
+# define CAPS__CAP_COUNT			10
 
 typedef struct	s_node_key
 {
