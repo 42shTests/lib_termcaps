@@ -20,6 +20,7 @@
 
 # define CAPS__MAP_KEY_COUNT		144
 # define CAPS__CAP_COUNT			10
+# define TERMCAPS_BUFFER_MAX 4096
 
 typedef struct	s_node_key
 {
