@@ -153,46 +153,43 @@ depend		:
 #start
 
 $(DIROBJ)caps__context.o: srcs/caps__context.c srcs/internal_caps.h incs/caps.h \
-  incs/types.h incs/logger.h incs/logger_utils.h incs/list.h
+  incs/types.h incs/list.h incs/context.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__context.c\n"
 		@$(CC) -c ./srcs/caps__context.c -o ./.objs/caps__context.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__initialize.o: srcs/caps__initialize.c srcs/internal_caps.h \
-  incs/caps.h incs/types.h incs/logger.h incs/logger_utils.h incs/list.h
+  incs/caps.h incs/types.h incs/list.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__initialize.c\n"
 		@$(CC) -c ./srcs/caps__initialize.c -o ./.objs/caps__initialize.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__finalize.o: srcs/caps__finalize.c srcs/internal_caps.h incs/caps.h \
-  incs/types.h incs/logger.h incs/logger_utils.h incs/list.h
+  incs/types.h incs/list.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__finalize.c\n"
 		@$(CC) -c ./srcs/caps__finalize.c -o ./.objs/caps__finalize.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__init_func.o: srcs/caps__init_func.c srcs/internal_caps.h \
-  incs/caps.h incs/types.h incs/logger.h incs/logger_utils.h incs/list.h \
-  incs/libft.h
+  incs/caps.h incs/types.h incs/list.h incs/libft.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__init_func.c\n"
 		@$(CC) -c ./srcs/caps__init_func.c -o ./.objs/caps__init_func.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__init_func_by_keycode.o: srcs/caps__init_func_by_keycode.c \
-  srcs/internal_caps.h incs/caps.h incs/types.h incs/logger.h \
-  incs/logger_utils.h incs/list.h
+  srcs/internal_caps.h incs/caps.h incs/types.h incs/list.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__init_func_by_keycode.c\n"
 		@$(CC) -c ./srcs/caps__init_func_by_keycode.c -o ./.objs/caps__init_func_by_keycode.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__exec_func.o: srcs/caps__exec_func.c incs/types.h \
-  srcs/internal_caps.h incs/caps.h incs/logger.h incs/logger_utils.h \
-  incs/list.h
+  srcs/internal_caps.h incs/caps.h incs/list.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__exec_func.c\n"
 		@$(CC) -c ./srcs/caps__exec_func.c -o ./.objs/caps__exec_func.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__keycode_dump.o: srcs/caps__keycode_dump.c incs/caps.h incs/types.h \
-  incs/logger.h incs/logger_utils.h incs/libft.h
+  incs/libft.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__keycode_dump.c\n"
 		@$(CC) -c ./srcs/caps__keycode_dump.c -o ./.objs/caps__keycode_dump.o $(CPPFLAGS) $(CFLAGS) 
@@ -203,60 +200,55 @@ $(DIROBJ)caps__keycode_cmp.o: srcs/caps__keycode_cmp.c incs/libft.h incs/types.h
 		@$(CC) -c ./srcs/caps__keycode_cmp.c -o ./.objs/caps__keycode_cmp.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__keycode_find.o: srcs/caps__keycode_find.c incs/types.h \
-  srcs/internal_caps.h incs/caps.h incs/logger.h incs/logger_utils.h \
-  incs/list.h
+  srcs/internal_caps.h incs/caps.h incs/list.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__keycode_find.c\n"
 		@$(CC) -c ./srcs/caps__keycode_find.c -o ./.objs/caps__keycode_find.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__win.o: srcs/caps__win.c srcs/internal_caps.h incs/caps.h \
-  incs/types.h incs/logger.h incs/logger_utils.h incs/list.h \
-  incs/libft.h
+  incs/types.h incs/list.h incs/libft.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__win.c\n"
 		@$(CC) -c ./srcs/caps__win.c -o ./.objs/caps__win.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__print.o: srcs/caps__print.c srcs/internal_caps.h incs/caps.h \
-  incs/types.h incs/logger.h incs/logger_utils.h incs/list.h
+  incs/types.h incs/list.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__print.c\n"
 		@$(CC) -c ./srcs/caps__print.c -o ./.objs/caps__print.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__print_cap.o: srcs/caps__print_cap.c srcs/internal_caps.h \
-  incs/caps.h incs/types.h incs/logger.h incs/logger_utils.h incs/list.h
+  incs/caps.h incs/types.h incs/list.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__print_cap.c\n"
 		@$(CC) -c ./srcs/caps__print_cap.c -o ./.objs/caps__print_cap.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__delete_line.o: srcs/caps__delete_line.c srcs/internal_caps.h \
-  incs/caps.h incs/types.h incs/logger.h incs/logger_utils.h incs/list.h
+  incs/caps.h incs/types.h incs/list.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__delete_line.c\n"
 		@$(CC) -c ./srcs/caps__delete_line.c -o ./.objs/caps__delete_line.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__cursor_to_offset.o: srcs/caps__cursor_to_offset.c \
-  srcs/internal_caps.h incs/caps.h incs/types.h incs/logger.h \
-  incs/logger_utils.h incs/list.h
+  srcs/internal_caps.h incs/caps.h incs/types.h incs/list.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__cursor_to_offset.c\n"
 		@$(CC) -c ./srcs/caps__cursor_to_offset.c -o ./.objs/caps__cursor_to_offset.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__cursor_getxy.o: srcs/caps__cursor_getxy.c srcs/internal_caps.h \
-  incs/caps.h incs/types.h incs/logger.h incs/logger_utils.h incs/list.h \
-  incs/libft.h
+  incs/caps.h incs/types.h incs/list.h incs/libft.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__cursor_getxy.c\n"
 		@$(CC) -c ./srcs/caps__cursor_getxy.c -o ./.objs/caps__cursor_getxy.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)caps__cursor_setxy.o: srcs/caps__cursor_setxy.c srcs/internal_caps.h \
-  incs/caps.h incs/types.h incs/logger.h incs/logger_utils.h incs/list.h
+  incs/caps.h incs/types.h incs/list.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/caps__cursor_setxy.c\n"
 		@$(CC) -c ./srcs/caps__cursor_setxy.c -o ./.objs/caps__cursor_setxy.o $(CPPFLAGS) $(CFLAGS) 
 
 $(DIROBJ)node__key.o: srcs/node__key.c srcs/internal_caps.h incs/caps.h \
-  incs/types.h incs/logger.h incs/logger_utils.h incs/list.h \
-  incs/libft.h
+  incs/types.h incs/list.h incs/libft.h
 		@printf "$(C_GRE)[ libcaps.a ] [ %-6s ]$(C_DFL) " "clang"
 		@printf "compiling ./srcs/node__key.c\n"
 		@$(CC) -c ./srcs/node__key.c -o ./.objs/node__key.o $(CPPFLAGS) $(CFLAGS) 

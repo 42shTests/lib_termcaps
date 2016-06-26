@@ -29,10 +29,7 @@ static bool	internal_caps__initialize_caps(t_internal_context *caps)
 	{
 		caps->caps[i] = tgetstr(capcodes[i], &caps->buffaddr);
 		if (i != caps->caps_size - 1 && !caps->caps[i])
-		{
-			log_fatal("tgetstr() failed on %s", capcodes[i]);
 			return (0);
-		}
 		i++;
 	}
 	caps->caps[i] = tgetstr("bc", &caps->buffaddr);
@@ -49,14 +46,9 @@ static bool	internal_caps__tgetent(t_internal_context *caps)
 	char		*temp;
 
 	termtype = CAPS__TERMTYPE;
-	if (!termtype)
-		log_info("getenv(\"TERM\") failed %s", "");
 	caps->termtype = termtype;
 	if (!tgetent(caps->termbuffer, termtype))
-	{
-		log_fatal("tgetent() failed termtype %s", termtype ? termtype : "(Null)");
 		return (0);
-	}
 	caps->buffaddr = caps->termbuffer;
 	temp = tgetstr("pc", &caps->buffaddr);
 	PC = temp ? *temp : 0;
@@ -70,21 +62,12 @@ bool		caps__initialize(const int fd)
 	t_internal_context	*caps;
 
 	if (fd < 0)
-	{
-		log_fatal("fd %d", fd);
 		return (0);
-	}
 	caps__get_context(&caps);
 	caps->fd = fd;
 	if (!internal_caps__tgetent(caps))
-	{
-		log_fatal("interal_caps__tgetent() failed %s", "");
 		return (0);
-	}
 	if (!internal_caps__initialize_caps(caps))
-	{
-		log_fatal("internal_caps__initialize_caps() failed %s", "");
 		return (0);
-	}
 	return (1);
 }

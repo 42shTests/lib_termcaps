@@ -21,16 +21,10 @@ extern size_t	caps__win(const char *cmd)
 	struct winsize		win;
 
 	if (!cmd)
-	{
-		log_fatal("cmd %p", (void *)cmd);
 		return 0;
-	}
 	caps__get_context(&context);
 	if (ioctl(context->fd, TIOCGWINSZ, &win) == -1)
-	{
-		log_error("ioctl() failed to get the windows size");
 		return (0);
-	}
 	if (!ft_strcmp(cmd, "co"))
 	{
 		return (win.ws_col);

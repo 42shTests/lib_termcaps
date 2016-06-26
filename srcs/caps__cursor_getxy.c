@@ -13,15 +13,9 @@ bool	s_caps__cursor_getxy(int *x, int *y)
 
 	caps__get_context(&context);
 	if (write(context->fd, ANSI_Q_CURSORXY, ANSI_Q_CURSORXY_SIZE) != ANSI_Q_CURSORXY_SIZE)
-	{
-		log_fatal("write() failed %s", "");
 		return (false);
-	}
 	if (read(context->fd, buf, sizeof(buf)) == sizeof(buf))
-	{
-		log_fatal("buf too small %zu", (size_t)sizeof(buf));
 		return (false);
-	}
 	i = sizeof("\033[") - 1;
 	*y = ft_atoi(buf + i);
 	while (ft_isdigit(buf[i]))
@@ -41,11 +35,7 @@ bool	caps__cursor_getxy(int *out_x, int *out_y)
 	if (out_y != NULL)
 		*out_y = 0;
 	if (!s_caps__cursor_getxy(&x, &y))
-	{
-		log_error("s_caps__cursor_getxy() failed");
 		return (false);
-	}
-	log_debug("x %d y %d", x, y);
 	if (out_x)
 		*out_x = x;
 	if (out_y)

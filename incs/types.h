@@ -28,7 +28,7 @@ typedef struct {
 	char				*bytes;
 }	t_buffer;
 
-# define STRING_TO_BUFFER(str)	(t_buffer){ (size_t)(sizeof(str) - 1), (char *)str }
+# define STB(str)	(t_buffer){ (size_t)(sizeof(str) - 1), (char *)str }
 # define BUFFER_INIT(size, str)	(t_buffer){ (size_t)size, (char *)str }
 
 typedef int				t_failure_code;

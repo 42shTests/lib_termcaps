@@ -22,23 +22,14 @@ bool	caps__init_func(char *tcapcode, int (*func)())
 	t_list				*new_key;
 
 	if (!tcapcode || !func)
-	{
-		log_fatal("tcapcode %p func %p", (void *)tcapcode, (void *)func);
 		return (false);
-	}
 	caps__get_context(&context);
 	keycode = tgetstr(tcapcode, &context->buffaddr);
 	if (!keycode)
-	{
-		log_info("Could not intialize %s", tcapcode);
 		return (false);
-	}
 	new_key = node_key__create(ft_strlen(keycode), keycode, func);
 	if (!new_key)
-	{
-		log_fatal("node_key__create() failed");
 		return (NULL);
-	}
 	list_push_back(new_key, &context->key_head);
 	return (true);
 }

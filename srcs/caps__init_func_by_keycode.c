@@ -22,17 +22,11 @@ bool	caps__init_func_by_keycode(const t_buffer keycode, int (*func)())
 	t_list				*new_key;
 
 	if (keycode.bytes == NULL || func == NULL)
-	{
-		log_fatal("keycode.bytes %p", (void *)keycode.bytes);
 		return (FALSE);
-	}
 	caps__get_context(&context);
 	new_key = node_key__create(keycode.size, keycode.bytes, func);
 	if (!new_key)
-	{
-		log_fatal("node_key__create() failed");
 		return (FALSE);
-	}
 	list_push_back(new_key, &context->key_head);
 	return (TRUE);
 }

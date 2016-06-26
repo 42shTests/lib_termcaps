@@ -12,23 +12,9 @@
 
 #include "internal_caps.h"
 #include "types.h"
+#include "context.h"
 
 void	caps__get_context(t_internal_context **out_context)
 {
-	static t_internal_context internal_context;
-
-	internal_context.termtype = NULL;
-	internal_context.buffaddr = NULL;
-	internal_context.key_head.prev = &internal_context.key_head;
-	internal_context.key_head.next = &internal_context.key_head;
-	//  = {
-	// 	.termtype = NULL,
-	// 	.buffaddr = NULL,
-	// 	.key_head = {
-	// 		.prev = &internal_context.key_head,
-	// 		.next = &internal_context.key_head
-	// 	},
-	// };
-
 	*out_context = &internal_context;
 }
