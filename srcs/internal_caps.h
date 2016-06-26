@@ -32,7 +32,7 @@ typedef struct	s_internal_context
 {
 	int			fd;
 	char		*termtype;
-	char		termbuffer[2048];
+	char		termbuffer[TERMCAPS_BUFFER_MAX];
 	char		*buffaddr;
 
 	t_list		key_head;
