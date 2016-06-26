@@ -22,15 +22,14 @@ void	caps__get_context(t_internal_context **out_context)
 	internal_context.key_head = NULL;
 	internal_context.key_head.prev = &internal_context.key_head;
 	internal_context.key_head.next = &internal_context.key_head;
-	internal_context.key_head = NULL;
-	 = {
-		.termtype = NULL,
-		.buffaddr = NULL,
-		.key_head = {
-			.prev = &internal_context.key_head,
-			.next = &internal_context.key_head
-		},
-	};
+	//  = {
+	// 	.termtype = NULL,
+	// 	.buffaddr = NULL,
+	// 	.key_head = {
+	// 		.prev = &internal_context.key_head,
+	// 		.next = &internal_context.key_head
+	// 	},
+	// };
 
 	*out_context = &internal_context;
 }
