@@ -1,16 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   caps__keycode_dump.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: abombard <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/09 15:50:46 by abombard          #+#    #+#             */
-/*   Updated: 2016/05/09 15:54:55 by abombard         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-
 #include "caps.h"
 #include "libft.h"
 #include "types.h"
@@ -31,7 +18,7 @@ static bool	internal__keycode_dump(const size_t keycode_size,
 	while (i < keycode_size)
 	{
 		if (j + 3 > dump_size)
-			return 0;
+			return (0);
 		if (i != 0)
 			dump[j++] = ':';
 		c = keycode[i];

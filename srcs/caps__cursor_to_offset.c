@@ -1,6 +1,6 @@
 #include "internal_caps.h"
 
-static void caps__cursor_to_line_offset(int current_line, const int dest_line)
+static void	caps__cursor_to_line_offset(int current_line, const int dest_line)
 {
 	if (current_line > dest_line)
 	{
@@ -40,7 +40,8 @@ static void	caps__cursor_to_col_offset(int current_col, const int dest_col)
 	}
 }
 
-void		caps__cursor_to_offset(const size_t to_offset, const size_t current_offset)
+void		caps__cursor_to_offset(const size_t to_offset,
+									const size_t current_offset)
 {
 	int		current_line;
 	int		dest_line;

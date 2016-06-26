@@ -1,28 +1,29 @@
-/* ************************************************************************** */
-/*																			  */
-/*														  :::	   ::::::::	  */
-/*	 caps__initialize.c									:+:		 :+:	:+:	  */
-/*													  +:+ +:+		  +:+	  */
-/*	 By: abombard <marvin@42.fr>					+#+	 +:+	   +#+		  */
-/*												  +#+#+#+#+#+	+#+			  */
-/*	 Created: 2016/04/01 17:20:28 by abombard		   #+#	  #+#			  */
-/*	 Updated: 2016/04/01 17:25:07 by abombard		  ###	########.fr		  */
-/*																			  */
-/* ************************************************************************** */
-
 #include "internal_caps.h"
 #include "types.h"
 
 #include <stdlib.h>
 #include <termcap.h>
 
+static int	s_init_capscode(char **capcodes)
+{
+	capcodes[0] = "nd";
+	capcodes[1] = "le";
+	capcodes[2] = "up";
+	capcodes[3] = "do";
+	capcodes[4] = "dc";
+	capcodes[5] = "ce";
+	capcodes[6] = "cd";
+	capcodes[7] = "cl";
+	capcodes[8] = "cr";
+	return (1);
+}
+
 static bool	internal_caps__initialize_caps(t_internal_context *caps)
 {
-	char	*capcodes[CAPS__CAP_COUNT] = {
-		"nd", "le", "up", "do", "dc", "ce", "cd", "cl", "cr"
-	};
+	char	*capcodes[CAPS__CAP_COUNT];
 	size_t	i;
 
+	s_init_capscode(capcodes);
 	caps->caps_size = sizeof(caps->caps) / sizeof(caps->caps[0]);
 	i = 0;
 	while (i < caps->caps_size - 1)

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*																			  */
-/*														  :::	   ::::::::	  */
-/*	 internal_caps.h									:+:		 :+:	:+:	  */
-/*													  +:+ +:+		  +:+	  */
-/*	 By: abombard <marvin@42.fr>					+#+	 +:+	   +#+		  */
-/*												  +#+#+#+#+#+	+#+			  */
-/*	 Created: 2016/04/01 15:58:22 by abombard		   #+#	  #+#			  */
-/*	 Updated: 2016/04/01 19:29:50 by abombard		  ###	########.fr		  */
-/*																			  */
-/* ************************************************************************** */
-
 #ifndef INTERNAL_CAPS_H
 # define INTERNAL_CAPS_H
 
@@ -42,13 +30,13 @@ typedef struct	s_internal_context
 	char		*caps[CAPS__CAP_COUNT];
 }				t_internal_context;
 
-
 /*
 ** getter for caps
 */
 extern void		caps__get_context (t_internal_context **context);
 
-t_list			*node_key__create(const size_t size, const char *keycode, int (*func)());
+t_list			*node_key__create(const size_t size,
+									const char *keycode, int (*func)());
 void			list_key__destroy(t_list *head);
 
 #endif

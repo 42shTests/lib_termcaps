@@ -26,7 +26,8 @@ bool	caps__keycode_find(const size_t in_keycode_size, const char *in_keycode)
 	keycode.size = in_keycode_size;
 	keycode.bytes = (char *)in_keycode;
 	caps__get_context(&context);
-	LIST_FOREACH(&context->key_head, pos)
+	pos = &context->key_head;
+	while ((pos = pos->next) && pos != &context->key_head)
 	{
 		key = CONTAINER_OF(pos, t_node_key, list);
 		if (!caps__keycode_cmp(keycode, key->keycode))

@@ -1,7 +1,6 @@
 #include "internal_caps.h"
 #include "libft.h"
 
-
 #define ANSI_Q_CURSORXY			"\033[6n"
 #define ANSI_Q_CURSORXY_SIZE	 sizeof("\033[6n") - 1
 
@@ -12,7 +11,8 @@ bool	s_caps__cursor_getxy(int *x, int *y)
 	size_t				i;
 
 	caps__get_context(&context);
-	if (write(context->fd, ANSI_Q_CURSORXY, ANSI_Q_CURSORXY_SIZE) != ANSI_Q_CURSORXY_SIZE)
+	if (write(context->fd, ANSI_Q_CURSORXY,
+		ANSI_Q_CURSORXY_SIZE) != ANSI_Q_CURSORXY_SIZE)
 		return (false);
 	if (read(context->fd, buf, sizeof(buf)) == sizeof(buf))
 		return (false);
