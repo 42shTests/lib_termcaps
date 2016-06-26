@@ -19,7 +19,6 @@ void	caps__get_context(t_internal_context **out_context)
 
 	internal_context.termtype = NULL;
 	internal_context.buffaddr = NULL;
-	internal_context.key_head = NULL;
 	internal_context.key_head.prev = &internal_context.key_head;
 	internal_context.key_head.next = &internal_context.key_head;
 	//  = {
