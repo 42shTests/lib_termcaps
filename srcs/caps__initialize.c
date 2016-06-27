@@ -46,7 +46,8 @@ static bool	internal_caps__tgetent(t_internal_context *caps)
 	char		*termtype;
 	char		*temp;
 
-	termtype = CAPS__TERMTYPE;
+	if ((termtype = CAPS__TERMTYPE) == NULL)
+		termtype = "xterm";
 	caps->termtype = termtype;
 	if (!tgetent(caps->termbuffer, termtype))
 		return (0);
